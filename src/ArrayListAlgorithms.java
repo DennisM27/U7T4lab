@@ -58,6 +58,131 @@ public class ArrayListAlgorithms {
      */
     public static void replaceWithCaps(ArrayList<String> wordList)
     {
-        for (int i = 0; )
+        for (int i = 0; i < wordList.size(); i++)
+        {
+            String word = wordList.get(i);
+            String lastLetter = word.substring(word.length() - 1);
+            if (lastLetter.equals("s"))
+            {
+                String uppercaseLetter = word.toUpperCase();
+                wordList.set(i, uppercaseLetter);
+            }
+        }
+    }
+
+    public static int indexOfMinimum(ArrayList<Integer> intList)
+    {
+        int minimum = intList.get(0);
+        int index = 0;
+        for (int i = 0; i < intList.size(); i++)
+        {
+            if (intList.get(i) < minimum)
+            {
+                minimum = intList.get(i);
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public static boolean areIdentical(ArrayList<Integer> numList1, ArrayList<Integer> numList2) {
+        for (int i = 0; i < numList1.size(); i++) {
+            if (!numList1.get(i).equals(numList2.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void removeOdds(ArrayList<Integer> numList)
+    {
+        for (int i = 0; i < numList.size(); i++) {
+            if (numList.get(i) % 2 == 0) {
+                numList.remove(i);
+                i--;
+            }
+        }
+    }
+
+    public static void wackyVowels(ArrayList<String> wordList)
+    {
+        for (int i = 0; i < wordList.size(); i++) {
+            String word = wordList.get(i);
+            if (!word.contains("a") || !word.contains("e") || !word.contains("i") || !word.contains("o")) {
+                wordList.remove(i);
+                i--;
+            }
+        }
+    }
+
+    public static void removeDuplicates(ArrayList<Integer> intList)
+    {
+        ArrayList<Integer> log = new ArrayList<>();
+        for (int i = 0; i < intList.size(); i++) {
+            if (log.contains(intList.get(i))) {
+                intList.remove(i);
+                i--;
+            } else {
+                log.add(intList.get(i));
+            }
+        }
+    }
+
+    public static void duplicateUpperAfter(ArrayList<String> wordList)
+    {
+        for (int i = 0; i < wordList.size(); i++) {
+            wordList.add(i + 1, wordList.get(i).toUpperCase());
+            i++;
+        }
+    }
+
+    public static void duplicateUpperEnd(ArrayList<String> wordList)
+    {
+        for (int i = 0; i < wordList.size(); i++) {
+            wordList.add(wordList.get(i).toUpperCase());
+        }
+    }
+
+    public static ArrayList<String> parseWordsAndReverse(String sentence)
+    {
+        ArrayList<String> arrayList = new ArrayList<>();
+        String[] array = sentence.split(" ");
+        for (int i = array.length - 1; i >= 0; i--) {
+            arrayList.add(array[i]);
+        }
+        return arrayList;
+    }
+
+    public static void moveBWords(ArrayList<String> wordList)
+    {
+        int currentB = 0;
+        for (int i = 0; i < wordList.size(); i++) {
+            String word = wordList.get(i);
+            if (word.startsWith("b")) {
+                wordList.remove(i);
+                wordList.add(currentB, word);
+                currentB++;
+            }
+        }
+    }
+
+    public static ArrayList<Integer> modes(int[] numList)
+    {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int maxCount = 1;
+        for (int i = 0; i < numList.length; i++) {
+            int count = 1;
+            for (int j = 0; j < numList.length; i++) {
+                if (numList[i] == numList[j]) {
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                arrayList.clear();
+                arrayList.add(numList[i]);
+            }
+        }
+        return arrayList;
     }
 }
